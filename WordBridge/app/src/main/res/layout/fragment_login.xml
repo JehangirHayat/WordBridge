@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/gradient_background">
+
+    <!-- Logo de la App -->
+    <ImageView
+        android:layout_width="167dp"
+        android:layout_height="175dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="App Logo"
+        android:src="@drawable/logo"
+        android:layout_marginTop="20dp" />
+
+    <!-- Campo de Email con icono -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_mail_foreground"
+            android:layout_marginStart="10dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_border"
+            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <!-- Campo de Contraseña con icono -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_pass_foreground"
+            android:layout_marginStart="10dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_border"
+            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <!-- CheckBox de "Recordarme" -->
+    <CheckBox
+        android:id="@+id/rememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember me"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp" />
+
+    <!-- Botón de LogIn -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp" />
+
+    <!-- ProgressBar de Carga -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:indeterminate="true" />
+
+    <!-- Mensaje de error -->
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="Invalid email or password"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:gravity="center" />
+
+    <!-- Enlace para crear cuenta -->
+    <TextView
+        android:id="@+id/createAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create account"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center" />
+</LinearLayout>

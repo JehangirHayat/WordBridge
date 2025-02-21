@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.wordbridge.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.wordbridge.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.wordbridge.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_languageSelectionMenuFragment"
+            app:destination="@id/languageSelectionMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/languageSelectionMenuFragment"
+        android:name="com.example.wordbridge.LanguageSelectionMenuFragment"
+        android:label="fragment_language_selection_menu"
+        tools:layout="@layout/fragment_language_selection_menu" >
+        <action
+            android:id="@+id/action_languageSelectionMenuFragment_to_sentenceFragment"
+            app:destination="@id/sentenceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sentenceFragment"
+        android:name="com.example.wordbridge.SentenceFragment"
+        android:label="fragment_sentence"
+        tools:layout="@layout/fragment_sentence" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.wordbridge.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+</navigation>

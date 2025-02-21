@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/firstNameInput"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="First Name"
+            android:background="@drawable/rounded_border"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/lastNameInput"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Last Name"
+            android:background="@drawable/rounded_border"
+            android:padding="5dp"
+            android:textSize="12sp"
+            android:layout_marginStart="10dp"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:background="@drawable/rounded_border"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:background="@drawable/rounded_border"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/CloseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+    android:backgroundTint="@android:color/holo_orange_light"
+    android:text="Close"
+    android:textColor="@android:color/white" />
+
+</LinearLayout>

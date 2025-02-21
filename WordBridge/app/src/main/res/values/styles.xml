@@ -1,0 +1,8 @@
+<resources>
+    <style name="DialogSlideUpAnimation" parent="Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="Animation">Animation</style>
+</resources>

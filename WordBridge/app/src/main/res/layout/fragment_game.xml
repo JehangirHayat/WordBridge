@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/gradient_background">
+
+    <!-- Barra de navegación -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+    android:padding="12dp">
+
+    <!-- Botón de Volver -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:textSize="14sp"
+        android:layout_marginEnd="20dp"/>
+
+    <!-- Título de la Pantalla -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz Game"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:layout_weight="1" />
+
+    <!-- Botón de Salir -->
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:textSize="14sp"/>
+</LinearLayout>
+
+    <!-- Pregunta del Quiz -->
+<TextView
+android:id="@+id/questionText"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="What is the capital of France?"
+android:textSize="18sp"
+android:textColor="@android:color/black"
+android:layout_gravity="center"
+android:layout_marginBottom="24dp" />
+
+    <!-- Opciones del Quiz -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:gravity="center"
+android:layout_marginBottom="32dp">
+
+<!-- Option 1 -->
+<Button
+    android:id="@+id/option1"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:text="Paris"
+    android:textSize="16sp"
+    android:textColor="@android:color/black"
+    android:background="@drawable/selector_answer"
+    android:layout_marginBottom="12dp" />
+
+<!-- Option 2 -->
+<Button
+    android:id="@+id/option2"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:text="London"
+    android:textSize="16sp"
+    android:textColor="@android:color/black"
+    android:background="@drawable/selector_answer"
+    android:layout_marginBottom="12dp" />
+
+<!-- Option 3 -->
+<Button
+    android:id="@+id/option3"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:text="Rome"
+    android:textSize="16sp"
+    android:textColor="@android:color/black"
+    android:background="@drawable/selector_answer"
+    android:layout_marginBottom="12dp" />
+
+<!-- Option 4 -->
+<Button
+    android:id="@+id/option4"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:text="Berlin"
+    android:textSize="16sp"
+    android:textColor="@android:color/black"
+    android:background="@drawable/selector_answer" />
+</LinearLayout>
+
+    <!-- Feedback message -->
+<TextView
+android:id="@+id/feedbackText"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text=""
+android:textSize="16sp"
+android:textColor="@android:color/black"
+android:layout_gravity="center"
+android:layout_marginTop="24dp" />
+
+    </LinearLayout>
