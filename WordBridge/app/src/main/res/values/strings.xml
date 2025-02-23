@@ -2,4 +2,23 @@
     <string name="app_name">WordBridge</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="main_language_array">
+        <item>Español</item>
+        <item>Arabe</item>
+        <item>Ruso</item>
+    </string-array>
+
+    <string-array name="learning_language_array">
+        <item>Español</item>
+        <item>Inglés</item>
+        <item>Holandés</item>
+    </string-array>
+
+    <!-- New array for purpose of sentences -->
+    <string-array name="purpose_array">
+    <item>Normal Conversation</item>
+    <item>School Phrases</item>
+    <item>Situational Phrases</item>
+    </string-array>
 </resources>

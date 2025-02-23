@@ -1,10 +1,13 @@
 package com.example.wordbridge;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,7 @@ import android.util.Log;
 public class LoginFragment extends Fragment {
 
     private EditText emailInput, passwordInput;
+    private CheckBox rememberMeCheckBox; // Checkbox for remembering user
     private static final String TAG = "LoginFragment"; // Logging tag
 
     @Nullable
@@ -30,8 +34,12 @@ public class LoginFragment extends Fragment {
 
         emailInput = rootView.findViewById(R.id.email);
         passwordInput = rootView.findViewById(R.id.password);
+        rememberMeCheckBox = rootView.findViewById(R.id.rememberMe);
         Button loginButton = rootView.findViewById(R.id.loginButton);
         TextView createAccountTextView = rootView.findViewById(R.id.createAccountTextView);
+
+        // Load saved email and password if "Remember me" was checked previously
+        loadUserData();
 
         // Handle login button click
         loginButton.setOnClickListener(v -> loginUser());
@@ -40,6 +48,15 @@ public class LoginFragment extends Fragment {
         createAccountTextView.setOnClickListener(v -> openRegisterDialog());
 
         return rootView;
+    }
+
+    private void loadUserData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        if (sharedPreferences.contains("email") && sharedPreferences.contains("password")) {
+            emailInput.setText(sharedPreferences.getString("email", ""));
+            passwordInput.setText(sharedPreferences.getString("password", ""));
+            rememberMeCheckBox.setChecked(true); // Automatically check "Remember me" if data is stored
+        }
     }
 
     private void loginUser() {
@@ -67,6 +84,7 @@ public class LoginFragment extends Fragment {
                         if (getActivity() != null) {
                             getActivity().runOnUiThread(() -> {
                                 Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                saveUserData(email, password);
                                 navigateToMainMenu();
                             });
                         }
@@ -97,6 +115,22 @@ public class LoginFragment extends Fragment {
         });
     }
 
+    private void saveUserData(String email, String password) {
+        if (rememberMeCheckBox.isChecked()) {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("email", email);
+            editor.putString("password", password);
+            editor.apply(); // Save the data
+        } else {
+            // Clear saved data if "Remember me" is unchecked
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+        }
+    }
+
     private void navigateToMainMenu() {
         MainMenuFragment mainMenuFragment = new MainMenuFragment();
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -104,7 +138,6 @@ public class LoginFragment extends Fragment {
         transaction.addToBackStack(null); // Allows back navigation
         transaction.commit();
     }
-
 
     private void openRegisterDialog() {
         RegisterFragment registerDialogFragment = new RegisterFragment();

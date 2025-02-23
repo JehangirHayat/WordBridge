@@ -1,64 +1,84 @@
 package com.example.wordbridge;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LanguageSelectionMenuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.Fragment;
+
 public class LanguageSelectionMenuFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Spinner mainLanguageSpinner, learningLanguageSpinner, purposeSpinner;
+    private Button confirmButton;
 
     public LanguageSelectionMenuFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LanguageSelectionMenuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LanguageSelectionMenuFragment newInstance(String param1, String param2) {
-        LanguageSelectionMenuFragment fragment = new LanguageSelectionMenuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_language_selection_menu, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_language_selection_menu, container, false);
+
+        // Initialize the Spinners and Button
+        mainLanguageSpinner = rootView.findViewById(R.id.mainLanguageSpinner);
+        learningLanguageSpinner = rootView.findViewById(R.id.learningLanguageSpinner);
+        purposeSpinner = rootView.findViewById(R.id.purposeSpinner);
+        confirmButton = rootView.findViewById(R.id.confirmButton);
+
+        // Set up the Spinners with data from resources
+        setupSpinners();
+
+        // Set an OnClickListener for the Confirm Button
+        confirmButton.setOnClickListener(v -> onConfirmButtonClick());
+
+        return rootView;
+    }
+
+    private void setupSpinners() {
+        // Main Language Spinner
+        ArrayAdapter<CharSequence> mainLanguageAdapter = ArrayAdapter.createFromResource(
+                getActivity(),
+                R.array.main_language_array,
+                android.R.layout.simple_spinner_item
+        );
+        mainLanguageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mainLanguageSpinner.setAdapter(mainLanguageAdapter);
+
+        // Learning Language Spinner
+        ArrayAdapter<CharSequence> learningLanguageAdapter = ArrayAdapter.createFromResource(
+                getActivity(),
+                R.array.learning_language_array,
+                android.R.layout.simple_spinner_item
+        );
+        learningLanguageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        learningLanguageSpinner.setAdapter(learningLanguageAdapter);
+
+        // Purpose Spinner
+        ArrayAdapter<CharSequence> purposeAdapter = ArrayAdapter.createFromResource(
+                getActivity(),
+                R.array.purpose_array,
+                android.R.layout.simple_spinner_item
+        );
+        purposeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        purposeSpinner.setAdapter(purposeAdapter);
+    }
+
+    private void onConfirmButtonClick() {
+        // Get selected languages from the Spinners
+        String selectedMainLanguage = mainLanguageSpinner.getSelectedItem().toString();
+        String selectedLearningLanguage = learningLanguageSpinner.getSelectedItem().toString();
+        String selectedPurpose = purposeSpinner.getSelectedItem().toString();
+
+        // Display a Toast or handle selection logic
+        Toast.makeText(getActivity(),
+                "Main Language: " + selectedMainLanguage + "\nLearning Language: " + selectedLearningLanguage +
+                        "\nPurpose: " + selectedPurpose, Toast.LENGTH_SHORT).show();
     }
 }
