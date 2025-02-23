@@ -34,8 +34,10 @@ public class RegisterFragment extends DialogFragment {
         passwordInput = view.findViewById(R.id.passwordInput);
 
         // Set dialog properties (animation & rounded corners)
-        getDialog().getWindow().setWindowAnimations(R.style.DialogSlideUpAnimation); // Set the slide-up animation
-        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.dialog_rounded_background); // Apply rounded background
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            getDialog().getWindow().setWindowAnimations(R.style.DialogSlideUpAnimation); // Set the slide-up animation
+            getDialog().getWindow().setBackgroundDrawableResource(R.drawable.dialog_rounded_background); // Apply rounded background
+        }
 
         // Set up the Register button
         Button registerButton = view.findViewById(R.id.RegisterButton);
@@ -73,33 +75,39 @@ public class RegisterFragment extends DialogFragment {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             try {
-                // Get the database instance
-                AppDatabase db = WordBridgeApp.getAppDatabase();
+                // Get the database instance safely
+                AppDatabase db = AppDatabase.getInstance(getActivity().getApplicationContext());
 
                 if (db != null) {
                     // Insert user into the database
                     db.userDao().insert(newUser);
 
                     // Show a success message (on the UI thread)
-                    getActivity().runOnUiThread(() -> {
-                        Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
-                        dismiss();  // Close the dialog after successful registration
-                    });
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
+                            dismiss();  // Close the dialog after successful registration
+                        });
+                    }
                 } else {
                     // Log an error if the database is null
                     Log.e(TAG, "Database is not initialized.");
-                    getActivity().runOnUiThread(() -> {
-                        Toast.makeText(getActivity(), "Database is not available. Try again.", Toast.LENGTH_SHORT).show();
-                    });
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            Toast.makeText(getActivity(), "Database is not available. Try again.", Toast.LENGTH_SHORT).show();
+                        });
+                    }
                 }
             } catch (Exception e) {
                 // Log the exception
                 Log.e(TAG, "Error during registration", e);
 
                 // Handle database errors (optional)
-                getActivity().runOnUiThread(() -> {
-                    Toast.makeText(getActivity(), "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
-                });
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getActivity(), "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    });
+                }
             }
         });
     }

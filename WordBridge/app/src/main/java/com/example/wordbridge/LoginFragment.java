@@ -11,10 +11,16 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import android.util.Log;
 
 public class LoginFragment extends Fragment {
 
     private EditText emailInput, passwordInput;
+    private static final String TAG = "LoginFragment"; // Logging tag
 
     @Nullable
     @Override
@@ -37,25 +43,70 @@ public class LoginFragment extends Fragment {
     }
 
     private void loginUser() {
-        String email = emailInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        String email = emailInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
 
-        // Check the user credentials in the database
-        AppDatabase database = WordBridgeApp.getAppDatabase();
-        User user = database.userDao().getUserByEmailAndPassword(email, password);
-
-        if (user != null) {
-            // Successful login
-            Toast.makeText(getContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-            // Navigate to the next fragment or activity
-        } else {
-            // Failed login
-            Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(getActivity(), "Please enter both email and password", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Run database query in a background thread
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                // Get database instance safely
+                AppDatabase database = AppDatabase.getInstance(getActivity().getApplicationContext());
+
+                if (database != null) {
+                    // Fetch user from database
+                    User user = database.userDao().getUserByEmailAndPassword(email, password);
+
+                    if (user != null) {
+                        Log.d(TAG, "Login Successful for: " + email);
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                navigateToMainMenu();
+                            });
+                        }
+                    } else {
+                        Log.d(TAG, "Invalid credentials for: " + email);
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                Toast.makeText(getActivity(), "Invalid email or password", Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                    }
+                } else {
+                    Log.e(TAG, "Database instance is null");
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            Toast.makeText(getActivity(), "Database is not initialized", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error during login", e);
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getActivity(), "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }
+        });
     }
 
+    private void navigateToMainMenu() {
+        MainMenuFragment mainMenuFragment = new MainMenuFragment();
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_container, mainMenuFragment); // Ensure this ID matches activity_main.xml
+        transaction.addToBackStack(null); // Allows back navigation
+        transaction.commit();
+    }
+
+
     private void openRegisterDialog() {
-        // Create and show the RegisterDialogFragment
         RegisterFragment registerDialogFragment = new RegisterFragment();
         registerDialogFragment.show(getChildFragmentManager(), "RegisterDialog");
     }

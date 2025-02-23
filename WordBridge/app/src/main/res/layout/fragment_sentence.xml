@@ -8,17 +8,18 @@
     android:background="@drawable/gradient_background">
 
     <!-- Título -->
+
+    <!-- Contenedor de la oración -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sentence Display"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:text="Sentence Display"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <!-- Contenedor de la oración -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
