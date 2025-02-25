@@ -17,8 +17,8 @@
 
     <!-- New array for purpose of sentences -->
     <string-array name="purpose_array">
-    <item>Normal Conversation</item>
-    <item>School Phrases</item>
-    <item>Situational Phrases</item>
+        <item>Normal Conversation</item>
+        <item>School Phrases</item>
+        <item>Situational Phrases</item>
     </string-array>
 </resources>

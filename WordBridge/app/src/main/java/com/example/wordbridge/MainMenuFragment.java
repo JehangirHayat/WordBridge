@@ -31,7 +31,7 @@ public class MainMenuFragment extends Fragment {
         Button exitButton = rootView.findViewById(R.id.exitButton);
 
         // Set click listener for the Play Game button
-        playGameButton.setOnClickListener(v -> navigateToGameFragment());
+        playGameButton.setOnClickListener(v -> navigateToGameLanguageFragment());
 
         // Set click listener for the Sentences button
         sentencesButton.setOnClickListener(v -> navigateToSentencesFragment());
@@ -42,10 +42,10 @@ public class MainMenuFragment extends Fragment {
         return rootView;
     }
 
-    private void navigateToGameFragment() {
+    private void navigateToGameLanguageFragment() {
         // Navigate to the GameFragment
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_fragment_container, new GameFragment());
+        transaction.replace(R.id.main_fragment_container, new GameLanguageFragment());
         transaction.addToBackStack(null); // Allow back navigation
         transaction.commit();
     }

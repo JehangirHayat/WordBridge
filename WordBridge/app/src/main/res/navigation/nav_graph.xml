@@ -47,4 +47,9 @@
         android:name="com.example.wordbridge.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/gameLanguageFragment"
+        android:name="com.example.wordbridge.GameLanguageFragment"
+        android:label="fragment_game_language"
+        tools:layout="@layout/fragment_game_language" />
 </navigation>

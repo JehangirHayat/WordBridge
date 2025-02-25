@@ -10,11 +10,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 public class LanguageSelectionMenuFragment extends Fragment {
 
     private Spinner mainLanguageSpinner, learningLanguageSpinner, purposeSpinner;
     private Button confirmButton;
+    private LanguageSelectionViewModel viewModel;
 
     public LanguageSelectionMenuFragment() {
         // Required empty public constructor
@@ -31,6 +34,9 @@ public class LanguageSelectionMenuFragment extends Fragment {
         learningLanguageSpinner = rootView.findViewById(R.id.learningLanguageSpinner);
         purposeSpinner = rootView.findViewById(R.id.purposeSpinner);
         confirmButton = rootView.findViewById(R.id.confirmButton);
+
+        // Initialize ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(LanguageSelectionViewModel.class);
 
         // Set up the Spinners with data from resources
         setupSpinners();
@@ -71,14 +77,31 @@ public class LanguageSelectionMenuFragment extends Fragment {
     }
 
     private void onConfirmButtonClick() {
-        // Get selected languages from the Spinners
+        // Get selected values
         String selectedMainLanguage = mainLanguageSpinner.getSelectedItem().toString();
         String selectedLearningLanguage = learningLanguageSpinner.getSelectedItem().toString();
         String selectedPurpose = purposeSpinner.getSelectedItem().toString();
 
-        // Display a Toast or handle selection logic
+        // Set data in ViewModel
+        viewModel.setSelectedMainLanguage(selectedMainLanguage);
+        viewModel.setSelectedLearningLanguage(selectedLearningLanguage);
+        viewModel.setSelectedPurpose(selectedPurpose);
+
+        // Show Toast (optional)
         Toast.makeText(getActivity(),
-                "Main Language: " + selectedMainLanguage + "\nLearning Language: " + selectedLearningLanguage +
-                        "\nPurpose: " + selectedPurpose, Toast.LENGTH_SHORT).show();
+                "Main Language: " + selectedMainLanguage + "\nLearning Language: " + selectedLearningLanguage
+                        + "\nPurpose: " + selectedPurpose, Toast.LENGTH_SHORT).show();
+
+        // Navigate to SentenceFragment
+        navigateToSentencesFragment();
     }
+
+    private void navigateToSentencesFragment() {
+        // Navigate to SentenceFragment
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_container, new SentenceFragment());
+        transaction.addToBackStack(null); // Allow back navigation
+        transaction.commit();
+    }
+
 }
