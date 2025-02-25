@@ -52,4 +52,9 @@
         android:name="com.example.wordbridge.GameLanguageFragment"
         android:label="fragment_game_language"
         tools:layout="@layout/fragment_game_language" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.wordbridge.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
 </navigation>
