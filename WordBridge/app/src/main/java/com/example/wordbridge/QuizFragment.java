@@ -69,8 +69,15 @@ public class QuizFragment extends Fragment {
         backButton = view.findViewById(R.id.backButton);
         nextButton = view.findViewById(R.id.nextButton);
 
+        // Obtener el idioma seleccionado desde el Bundle
+        Bundle bundle = getArguments();
+        String selectedLanguage = "English";  // Por defecto
+        if (bundle != null) {
+            selectedLanguage = bundle.getString(SELECTED_LANGUAGE_KEY, "English");
+        }
+
         // Cargar las preguntas
-        loadQuestions();
+        loadQuestions(selectedLanguage);
 
         // Comprobar si es un nuevo día
         checkIfNewDay();
@@ -97,9 +104,7 @@ public class QuizFragment extends Fragment {
         return view;
     }
 
-    private void loadQuestions() {
-        // Obtener el lenguaje seleccionado (esto debería obtenerse dinámicamente)
-        String selectedLanguage = "English";  // Ejemplo de lenguaje, debería obtenerse dinámicamente
+    private void loadQuestions(String selectedLanguage) {
         String tableName = getTableNameByLanguage(selectedLanguage);
 
         if (tableName.isEmpty()) {
@@ -214,7 +219,6 @@ public class QuizFragment extends Fragment {
             Toast.makeText(getContext(), "You have already answered a question today.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     private void checkAnswer(String selectedAnswer, LinearLayout optionLayout) {
         if (questions == null || currentQuestionIndex >= questions.size()) return;

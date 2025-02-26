@@ -31,7 +31,7 @@ public class GameLanguageFragment extends Fragment {
         confirmButton = view.findViewById(R.id.confirmButton);
 
         // Array of languages
-        String[] languages = {"English", "Netherlands", "Spanish"};
+        String[] languages = {"English", "Netherland", "Spanish"};
 
         // Array of game types
         String[] gameTypes = {"Quiz", "Write"};
