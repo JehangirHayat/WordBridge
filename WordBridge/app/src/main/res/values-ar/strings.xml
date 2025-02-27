@@ -48,4 +48,5 @@
     <string name="error_select_purpose">يرجى تحديد الغرض</string>
     <string name="purpose_not_selected">يرجى تحديد غرض من القائمة.</string>
     <string name="invalid_purpose">الغرض المحدد غير صالح. يرجى المحاولة مرة أخرى.</string>
+    <string name="no_more_sentences">لا توجد جمل أخرى متاحة</string>
 </resources>

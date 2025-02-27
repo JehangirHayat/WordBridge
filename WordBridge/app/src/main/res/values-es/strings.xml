@@ -49,5 +49,6 @@
     <string name="error_select_purpose">Seleccione un propósito</string>
     <string name="purpose_not_selected">Seleccione un propósito del menú.</string>
     <string name="invalid_purpose">El propósito seleccionado no es válido. Inténtalo de nuevo.</string>
+    <string name="no_more_sentences">No hay más oraciones disponibles</string>
 
 </resources>

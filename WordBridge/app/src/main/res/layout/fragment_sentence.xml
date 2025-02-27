@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="30dp"
     android:background="@drawable/gradient_background">
 
     <!-- Título -->
@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/Display"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <!-- Título del contenedor de la oración -->
@@ -23,10 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/Learning"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <!-- Contenedor de la oración traducida -->
@@ -34,8 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginBottom="10dp">
+        android:padding="15dp"
+        android:layout_marginBottom="15dp">
 
         <!-- Learning Language Sentence 1 -->
         <LinearLayout
@@ -43,9 +43,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:background="@drawable/rounded_border"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/learningLanguageText1"
@@ -53,16 +53,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/black" />
 
             <ImageView
                 android:id="@+id/learningAudioButton1"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_audio_foreground"
                 android:contentDescription="Play Learning Audio"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="15dp" />
         </LinearLayout>
 
         <!-- Learning Language Sentence 2 -->
@@ -71,9 +71,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:background="@drawable/rounded_border"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/learningLanguageText2"
@@ -81,16 +81,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/black" />
 
             <ImageView
                 android:id="@+id/learningAudioButton2"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_audio_foreground"
                 android:contentDescription="Play Learning Audio"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="15dp" />
         </LinearLayout>
 
         <!-- Learning Language Sentence 3 -->
@@ -99,9 +99,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:background="@drawable/rounded_border"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/learningLanguageText3"
@@ -109,19 +109,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/black" />
 
             <ImageView
                 android:id="@+id/learningAudioButton3"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_audio_foreground"
                 android:contentDescription="Play Learning Audio"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="15dp" />
         </LinearLayout>
-
-        <!-- Add more sentences as needed by copying the above block -->
 
     </LinearLayout>
 
@@ -131,10 +129,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Next"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
         android:backgroundTint="@android:color/holo_orange_light"
         android:textColor="@android:color/white"
         android:layout_gravity="center"/>
-
 </LinearLayout>

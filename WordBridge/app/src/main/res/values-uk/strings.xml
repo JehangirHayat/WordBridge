@@ -49,4 +49,5 @@
     <string name="purpose_not_selected">Будь ласка, виберіть ціль у меню.</string>
     <string name="audio_play_error">Помилка відтворення аудіо. Спробуйте пізніше.</string>
     <string name="invalid_purpose">Вибрана мета недійсна. Спробуйте ще раз.</string>
+    <string name="no_more_sentences">Більше немає доступних речень</string>
 </resources>

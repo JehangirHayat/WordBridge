@@ -49,4 +49,5 @@
     <string name="error_select_purpose">Please select a purpose</string>
     <string name="purpose_not_selected">Please select a purpose from the menu.</string>
     <string name="invalid_purpose">The selected purpose is invalid. Please try again.</string>
+    <string name="no_more_sentences">No more sentences available</string>
 </resources>

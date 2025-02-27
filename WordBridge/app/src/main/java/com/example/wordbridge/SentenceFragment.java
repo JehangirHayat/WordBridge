@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class SentenceFragment extends Fragment {
     private TextView learningText1, learningText2, learningText3;
     private ImageView audioButton1, audioButton2, audioButton3;
     private LinearLayout sentencesContainer;
+    private Button nextButton;
     private List<Sentence> sentenceList = new ArrayList<>();
     private int currentSentenceIndex = 0;
     private MediaPlayer mediaPlayer;
@@ -61,6 +63,7 @@ public class SentenceFragment extends Fragment {
         audioButton1 = view.findViewById(R.id.learningAudioButton1);
         audioButton2 = view.findViewById(R.id.learningAudioButton2);
         audioButton3 = view.findViewById(R.id.learningAudioButton3);
+        nextButton = view.findViewById(R.id.nextButton); // Next button to load more sentences
 
         setupRetrofit();
 
@@ -71,8 +74,8 @@ public class SentenceFragment extends Fragment {
             Toast.makeText(getContext(), getString(R.string.purpose_not_selected), Toast.LENGTH_SHORT).show();
         }
 
-        // Set up audio buttons dynamically based on sentence list
-        setupAudioButtons();
+        // Set up Next button to load more sentences
+        nextButton.setOnClickListener(v -> loadMoreSentences());
 
         return view;
     }
@@ -160,15 +163,41 @@ public class SentenceFragment extends Fragment {
     }
 
     private void displaySentences() {
-        // Display sentences dynamically based on the list
-        if (!sentenceList.isEmpty()) {
-            learningText1.setText(sentenceList.get(0).getCnPhrace());
+        // Display sentences and set visibility for audio buttons
+        if (sentenceList.size() > currentSentenceIndex) {
+            learningText1.setText(sentenceList.get(currentSentenceIndex).getCnPhrace());
+            audioButton1.setVisibility(View.VISIBLE);  // Make audio button visible
+        } else {
+            audioButton1.setVisibility(View.GONE);  // Hide audio button if no sentence
         }
-        if (sentenceList.size() > 1) {
-            learningText2.setText(sentenceList.get(1).getCnPhrace());
+
+        if (sentenceList.size() > currentSentenceIndex + 1) {
+            learningText2.setText(sentenceList.get(currentSentenceIndex + 1).getCnPhrace());
+            audioButton2.setVisibility(View.VISIBLE);  // Make audio button visible
+        } else {
+            audioButton2.setVisibility(View.GONE);  // Hide audio button if no sentence
         }
-        if (sentenceList.size() > 2) {
-            learningText3.setText(sentenceList.get(2).getCnPhrace());
+
+        if (sentenceList.size() > currentSentenceIndex + 2) {
+            learningText3.setText(sentenceList.get(currentSentenceIndex + 2).getCnPhrace());
+            audioButton3.setVisibility(View.VISIBLE);  // Make audio button visible
+        } else {
+            audioButton3.setVisibility(View.GONE);  // Hide audio button if no sentence
+        }
+
+        setupAudioButtons();  // Set up audio buttons after sentences are displayed
+    }
+
+    private void setupAudioButtons() {
+        // Set up audio buttons only if the sentences exist
+        if (sentenceList.size() > currentSentenceIndex) {
+            audioButton1.setOnClickListener(v -> playAudio(sentenceList.get(currentSentenceIndex).getCnAudio()));
+        }
+        if (sentenceList.size() > currentSentenceIndex + 1) {
+            audioButton2.setOnClickListener(v -> playAudio(sentenceList.get(currentSentenceIndex + 1).getCnAudio()));
+        }
+        if (sentenceList.size() > currentSentenceIndex + 2) {
+            audioButton3.setOnClickListener(v -> playAudio(sentenceList.get(currentSentenceIndex + 2).getCnAudio()));
         }
     }
 
@@ -188,15 +217,13 @@ public class SentenceFragment extends Fragment {
         }
     }
 
-    private void setupAudioButtons() {
-        // Dynamically setup audio buttons based on the number of sentences
-        audioButton1.setVisibility(sentenceList.size() > 0 ? View.VISIBLE : View.GONE);
-        audioButton2.setVisibility(sentenceList.size() > 1 ? View.VISIBLE : View.GONE);
-        audioButton3.setVisibility(sentenceList.size() > 2 ? View.VISIBLE : View.GONE);
-
-        audioButton1.setOnClickListener(v -> playAudio(sentenceList.get(0).getCnAudio()));
-        audioButton2.setOnClickListener(v -> playAudio(sentenceList.get(1).getCnAudio()));
-        audioButton3.setOnClickListener(v -> playAudio(sentenceList.get(2).getCnAudio()));
+    private void loadMoreSentences() {
+        if (currentSentenceIndex + 3 < sentenceList.size()) {
+            currentSentenceIndex += 3;
+            displaySentences();
+        } else {
+            Toast.makeText(getContext(), getString(R.string.no_more_sentences), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private interface SupabaseApi {
