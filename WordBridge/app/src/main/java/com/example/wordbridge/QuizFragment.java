@@ -173,7 +173,7 @@ public class QuizFragment extends Fragment {
         switch (language) {
             case "English":
                 return "Select_Quiz_English";
-            case "Netherland":
+            case "Dutch":
                 return "Select_Quiz_Netherland";
             case "Spanish":
                 return "Select_Quiz_Spanish";

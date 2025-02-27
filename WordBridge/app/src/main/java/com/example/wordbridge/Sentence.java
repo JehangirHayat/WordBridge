@@ -1,31 +1,24 @@
 package com.example.wordbridge;
 
 public class Sentence {
-    private String cn_phrace;
-    private String cs_frases;
-    private String cs_audio;
+    private String cn_phrase;
+    private String cn_audio;
 
     public String getCnPhrace() {
-        return cn_phrace;
+        return cn_phrase;
     }
 
-    public void setCnPhrace(String cnPhrace) {
-        this.cn_phrace = cnPhrace;
+    public void setCnPhrase(String cnPhrace) {
+        this.cn_phrase = cnPhrace;
     }
 
-    public String getCsFrases() {
-        return cs_frases;
-    }
 
-    public void setCsFrases(String fsFrases) {
-        this.cs_frases = fsFrases;
-    }
 
-    public String getCsAudio() {
-        return cs_audio;
+    public String getCnAudio() {
+        return cn_audio;
     }
 
     public void setCsAudio(String csAudio) {
-        this.cs_audio = csAudio;
+        this.cn_audio = csAudio;
     }
 }

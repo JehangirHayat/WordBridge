@@ -1,24 +1,52 @@
 <resources>
     <string name="app_name">WordBridge</string>
+    <string name="language_changed">Language changed successfully</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string-array name="main_language_array">
-        <item>Español</item>
-        <item>Arabe</item>
-        <item>Ruso</item>
-    </string-array>
-
-    <string-array name="learning_language_array">
-        <item>Español</item>
-        <item>Inglés</item>
-        <item>Holandés</item>
-    </string-array>
-
-    <!-- New array for purpose of sentences -->
-    <string-array name="purpose_array">
-        <item>Normal Conversation</item>
-        <item>School Phrases</item>
-        <item>Situational Phrases</item>
-    </string-array>
+    <string name="remember">Remember Me</string>
+    <string name="login">Login</string>
+    <string name="Create">Create Account</string>
+    <string name="regi">Register</string>
+    <string name="close">Close</string>
+    <string name="select">Select Language</string>
+    <string name="Pref">Preference</string>
+    <string name="backlog">Back Login</string>
+    <string name="Email">Email</string>
+    <string name="Pass">Password</string>
+    <string name="invalid">Invalid email or password</string>
+    <string name="game">Play Game</string>
+    <string name="Sentences">Sentences</string>
+    <string name="back">Back</string>
+    <string name="Exit">Exit</string>
+    <string name="Display">Sentence Display</string>
+    <string name="Learning">Learning Language Sentences</string>
+    <string name="score">Score:</string>
+    <string name="Question">Question:</string>
+    <string name="Next">Next</string>
+    <string name="SelectLearning">Select Learning Language</string>
+    <string name="SelectPurpose">Select Purpose for Sentences</string>
+    <string name="Confirm">Confirm</string>
+    <string name="SelectLanguage">Select Language to Play</string>
+    <string name="SelectGame">Select Game Type</string>
+    <string name="QuizGame">Quiz Game</string>
+    <string name="Type">Type your answer here</string>
+    <string name="error_select_language">Please select both language and game type</string>
+    <string name="language_not_selected">Language not selected.</string>
+    <string name="exit_confirmation_message">Are you sure you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="max_questions_per_day">You can only answer one question per day.</string>
+    <string name="incorrect_feedback">Incorrect. Try again.</string>
+    <string name="correct_feedback">Correct! +10 points.</string>
+    <string name="all_questions_answered">You have answered all available questions.</string>
+    <string name="no_questions_available">No questions available.</string>
+    <string name="failed_to_load_questions">Failed to load questions.</string>
+    <string name="connection_error">Connection error.</string>
+¡
+    <string name="failed_to_load_sentences">Failed to load sentences. Please check your connection and try again.</string>
+    <string name="no_sentences_available">No sentences available for this language.</string>
+    <string name="invalid_language">Invalid language selected. Please select a valid language.</string>
+    <string name="audio_play_error">Error playing audio. Please try again later.</string>
+    <string name="error_select_purpose">Please select a purpose</string>
+    <string name="purpose_not_selected">Please select a purpose from the menu.</string>
+    <string name="invalid_purpose">The selected purpose is invalid. Please try again.</string>
 </resources>

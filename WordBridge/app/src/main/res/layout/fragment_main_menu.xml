@@ -22,7 +22,7 @@
         android:id="@+id/playGameButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play Game"
+        android:text="@string/game"
         android:backgroundTint="@android:color/holo_orange_light"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp" />
@@ -32,7 +32,7 @@
         android:id="@+id/sentencesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sentences"
+        android:text="@string/Sentences"
         android:backgroundTint="@android:color/holo_orange_light"
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp" />
@@ -42,7 +42,7 @@
         android:id="@+id/exitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Exit"
+        android:text="@string/Exit"
         android:backgroundTint="@android:color/holo_red_dark"
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp" />

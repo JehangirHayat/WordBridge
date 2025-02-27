@@ -6,14 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 public class LanguageSelectionViewModel extends ViewModel {
 
-    private final MutableLiveData<String> selectedMainLanguage = new MutableLiveData<>();
     private final MutableLiveData<String> selectedLearningLanguage = new MutableLiveData<>();
     private final MutableLiveData<String> selectedPurpose = new MutableLiveData<>();
 
-    // Getters for LiveData
-    public LiveData<String> getSelectedMainLanguage() {
-        return selectedMainLanguage;
-    }
 
     public LiveData<String> getSelectedLearningLanguage() {
         return selectedLearningLanguage;
@@ -21,11 +16,6 @@ public class LanguageSelectionViewModel extends ViewModel {
 
     public LiveData<String> getSelectedPurpose() {
         return selectedPurpose;
-    }
-
-    // Setters for LiveData
-    public void setSelectedMainLanguage(String language) {
-        selectedMainLanguage.setValue(language);
     }
 
     public void setSelectedLearningLanguage(String language) {

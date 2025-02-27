@@ -57,4 +57,9 @@
         android:name="com.example.wordbridge.QuizFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.wordbridge.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

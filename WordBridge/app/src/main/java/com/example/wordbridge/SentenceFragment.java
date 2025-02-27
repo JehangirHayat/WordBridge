@@ -1,64 +1,210 @@
 package com.example.wordbridge;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SentenceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Path;
+
 public class SentenceFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private TextView learningText1, learningText2, learningText3;
+    private ImageView audioButton1, audioButton2, audioButton3;
+    private LinearLayout sentencesContainer;
+    private List<Sentence> sentenceList = new ArrayList<>();
+    private int currentSentenceIndex = 0;
+    private MediaPlayer mediaPlayer;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String PREF_NAME = "LanguagePreference";
+    private static final String SELECTED_PURPOSE_KEY = "selectedPurpose";
+    private static final String SUPABASE_URL = "https://twvfjmxoylpqsdifboio.supabase.co";
+    private static final String API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3dmZqbXhveWxwcXNkaWZib2lvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MTE2NjQsImV4cCI6MjA1NTM4NzY2NH0.S8odO5RgX3B2Zt5SdXsJfvv8rqldD8-uNFSPdnNiCas"; // Update with your actual API key
 
-    public SentenceFragment() {
-        // Required empty public constructor
-    }
+    private SupabaseApi supabaseApi;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SentenceFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SentenceFragment newInstance(String param1, String param2) {
-        SentenceFragment fragment = new SentenceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sentence, container, false);
+
+        // Initialize views
+        learningText1 = view.findViewById(R.id.learningLanguageText1);
+        learningText2 = view.findViewById(R.id.learningLanguageText2);
+        learningText3 = view.findViewById(R.id.learningLanguageText3);
+
+        audioButton1 = view.findViewById(R.id.learningAudioButton1);
+        audioButton2 = view.findViewById(R.id.learningAudioButton2);
+        audioButton3 = view.findViewById(R.id.learningAudioButton3);
+
+        setupRetrofit();
+
+        String selectedPurpose = getSelectedPurpose();
+        if (selectedPurpose != null) {
+            loadSentences(selectedPurpose);
+        } else {
+            Toast.makeText(getContext(), getString(R.string.purpose_not_selected), Toast.LENGTH_SHORT).show();
+        }
+
+        // Set up audio buttons dynamically based on sentence list
+        setupAudioButtons();
+
+        return view;
+    }
+
+    private void setupRetrofit() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SUPABASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
+
+        supabaseApi = retrofit.create(SupabaseApi.class);
+    }
+
+    private String getSelectedPurpose() {
+        SharedPreferences preferences = getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(SELECTED_PURPOSE_KEY, null);
+    }
+
+    private void loadSentences(String selectedPurpose) {
+        String tableName = getTableNameForPurpose(selectedPurpose);
+        if (tableName.isEmpty()) {
+            Toast.makeText(getContext(), getString(R.string.invalid_purpose), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Call<List<Sentence>> call = supabaseApi.getSentences(
+                "Bearer " + API_KEY,
+                API_KEY,
+                tableName
+        );
+
+        call.enqueue(new Callback<List<Sentence>>() {
+            @Override
+            public void onResponse(Call<List<Sentence>> call, Response<List<Sentence>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    sentenceList = response.body();
+                    if (!sentenceList.isEmpty()) {
+                        displaySentences();
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.no_sentences_available), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.failed_to_load_sentences), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Sentence>> call, Throwable t) {
+                Toast.makeText(getContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private String getTableNameForPurpose(String purpose) {
+        switch (purpose) {
+            case "Normal Conversation Dutch":
+                return "Normal_Conversation_Netherland";
+            case "Normal Conversation English":
+                return "Normal_Conversation_English";
+            case "Normal Conversation Spanish":
+                return "Normal_Conversation_Spanish";
+            case "School Phrase Dutch":
+                return "School_Phrase_Netherland";
+            case "School Phrase English":
+                return "School_Phrase_English";
+            case "School Phrase Spanish":
+                return "School_Phrase_Spanish";
+            case "Situational Phrases English":
+                return "Situational_Phrases_English";
+            case "Situational Phrases Dutch":
+                return "Situational_Phrases_Netherland";
+            case "Situational Phrases Spanish":
+                return "Situational_Phrases_Spanish";
+            default:
+                return "";
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sentence, container, false);
+    private void displaySentences() {
+        // Display sentences dynamically based on the list
+        if (!sentenceList.isEmpty()) {
+            learningText1.setText(sentenceList.get(0).getCnPhrace());
+        }
+        if (sentenceList.size() > 1) {
+            learningText2.setText(sentenceList.get(1).getCnPhrace());
+        }
+        if (sentenceList.size() > 2) {
+            learningText3.setText(sentenceList.get(2).getCnPhrace());
+        }
+    }
+
+    private void playAudio(String audioUrl) {
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        }
+
+        try {
+            mediaPlayer.reset();
+            mediaPlayer.setDataSource(audioUrl);
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), getString(R.string.audio_play_error), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setupAudioButtons() {
+        // Dynamically setup audio buttons based on the number of sentences
+        audioButton1.setVisibility(sentenceList.size() > 0 ? View.VISIBLE : View.GONE);
+        audioButton2.setVisibility(sentenceList.size() > 1 ? View.VISIBLE : View.GONE);
+        audioButton3.setVisibility(sentenceList.size() > 2 ? View.VISIBLE : View.GONE);
+
+        audioButton1.setOnClickListener(v -> playAudio(sentenceList.get(0).getCnAudio()));
+        audioButton2.setOnClickListener(v -> playAudio(sentenceList.get(1).getCnAudio()));
+        audioButton3.setOnClickListener(v -> playAudio(sentenceList.get(2).getCnAudio()));
+    }
+
+    private interface SupabaseApi {
+        @GET("rest/v1/{tableName}?select=cn_phrase,cn_audio")
+        Call<List<Sentence>> getSentences(
+                @Header("Authorization") String authToken,
+                @Header("apikey") String apiKey,
+                @Path("tableName") String tableName
+        );
     }
 }

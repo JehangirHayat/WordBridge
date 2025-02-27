@@ -18,40 +18,14 @@
         android:layout_marginTop="20dp" />
 
     <!-- Selector de idioma principal -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Main Language"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp" />
-
-    <Spinner
-        android:id="@+id/mainLanguageSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
 
     <!-- Selector de idioma de aprendizaje -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Learning Language"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp" />
-
-    <Spinner
-        android:id="@+id/learningLanguageSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
 
     <!-- Selector de propósito de las frases -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Purpose for Sentences"
+        android:text="@string/SelectPurpose"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:layout_marginTop="20dp" />
@@ -67,7 +41,15 @@
         android:id="@+id/confirmButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm"
+        android:text="@string/Confirm"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/BackButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
         android:backgroundTint="@android:color/holo_orange_light"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp" />

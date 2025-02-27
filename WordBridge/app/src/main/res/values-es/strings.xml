@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WordBridge</string>
+    <string name="language_changed">El idioma se ha cambiado correctamente</string>
+    <string name="remember">Acuérdate de mí</string>
+    <string name="login">iniciar sesión</string>
+    <string name="Create">Crear una cuenta</string>
+    <string name="regi">Registro</string>
+    <string name="close">Cerrar</string>
+    <string name="select">Seleccione idioma</string>
+    <string name="Pref">Preferencia</string>
+    <string name="backlog">Volver Iniciar sesión</string>
+    <string name="Email">Correo electrónico</string>
+    <string name="Pass">Contraseña</string>
+    <string name="invalid">Correo electrónico o contraseña no válidos</string>
+    <string name="game">Jugar juego</string>
+    <string name="Sentences">Oraciones</string>
+    <string name="back">Atrás</string>
+    <string name="Exit">Salir</string>
+    <string name="Display">Visualización de oraciones</string>
+    <string name="Learning">Aprendiendo frases del lenguaje</string>
+    <string name="score">Puntaje:</string>
+    <string name="Question">Pregunta:</string>
+    <string name="Next">Próximo</string>
+    <string name="SelectLearning">Seleccione el idioma de aprendizaje</string>
+    <string name="SelectPurpose">Seleccionar el propósito de las oraciones</string>
+    <string name="Confirm">Confirmar</string>
+    <string name="SelectLanguage">Seleccione el idioma para jugar</string>
+    <string name="SelectGame">Seleccionar el tipo de juego</string>
+    <string name="QuizGame">Juego de preguntas y respuestas</string>
+    <string name="Type">Escribe tu respuesta aquí</string>
+    <string name="error_select_language">Por favor, selecciona tanto el idioma como el tipo de juego.</string>
+    <string name="language_not_selected">Idioma no seleccionado.</string>
+    <string name="exit_confirmation_message">¿Está seguro de que desea salir?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="max_questions_per_day">Solo puede responder una pregunta por día.</string>
+    <string name="incorrect_feedback">Incorrecto. Inténtelo de nuevo.</string>
+    <string name="correct_feedback">¡Correcto! +10 puntos.</string>
+    <string name="all_questions_answered">Ha respondido a todas las preguntas disponibles.</string>
+    <string name="no_questions_available">No hay preguntas disponibles.</string>
+    <string name="failed_to_load_questions">Error al cargar las preguntas.</string>
+    <string name="connection_error">Error de conexión.</string>
+    <string name="failed_to_load_sentences">Error al cargar las oraciones. Comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="no_sentences_available">No hay oraciones disponibles para este idioma.</string>
+
+    <string name="invalid_language">Idioma seleccionado no válido. Selecciona un idioma válido.</string>
+    <string name="audio_play_error">Error al reproducir el audio. Inténtalo de nuevo más tarde.</string>
+    <string name="error_select_purpose">Seleccione un propósito</string>
+    <string name="purpose_not_selected">Seleccione un propósito del menú.</string>
+    <string name="invalid_purpose">El propósito seleccionado no es válido. Inténtalo de nuevo.</string>
+
+</resources>

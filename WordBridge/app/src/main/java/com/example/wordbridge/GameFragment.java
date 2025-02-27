@@ -76,7 +76,7 @@ public class GameFragment extends Fragment {
         if (selectedLanguage != null) {
             loadQuestions(selectedLanguage);
         } else {
-            Toast.makeText(getContext(), "Language not selected.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.language_not_selected), Toast.LENGTH_SHORT).show();
         }
 
         // Back button
@@ -92,12 +92,12 @@ public class GameFragment extends Fragment {
         // Exit button with confirmation dialog
         exitButton.setOnClickListener(v -> {
             new android.app.AlertDialog.Builder(getContext())
-                    .setMessage("Are you sure you want to exit?")
+                    .setMessage(getString(R.string.exit_confirmation_message))
                     .setCancelable(false)
-                    .setPositiveButton("Yes", (dialog, id) -> {
+                    .setPositiveButton(getString(R.string.yes), (dialog, id) -> {
                         getActivity().finish(); // Close the app
                     })
-                    .setNegativeButton("No", null)
+                    .setNegativeButton(getString(R.string.no), null)
                     .show();
         });
 
@@ -111,7 +111,7 @@ public class GameFragment extends Fragment {
             if (questionsAnsweredToday < MAX_QUESTIONS_PER_DAY) {
                 loadNextQuestion();
             } else {
-                Toast.makeText(getContext(), "You can only answer one question per day.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.max_questions_per_day), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -147,14 +147,14 @@ public class GameFragment extends Fragment {
             case "English":
                 tableName = "Write_Quiz_English";
                 break;
-            case "Netherland":
+            case "Dutch":
                 tableName = "Write_Quiz_Netherland";
                 break;
             case "Spanish":
                 tableName = "Write_Quiz_Spanish";
                 break;
             default:
-                Toast.makeText(getContext(), "Invalid language selected.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.invalid_language), Toast.LENGTH_SHORT).show();
                 return;
         }
 
@@ -178,16 +178,16 @@ public class GameFragment extends Fragment {
                         // Display first question
                         displayQuestion(questionList.get(currentQuestionIndex));
                     } else {
-                        Toast.makeText(getContext(), "No questions available.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.no_questions_available), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getContext(), "Failed to load questions.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.failed_to_load_questions), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<QuizResponse>> call, Throwable t) {
-                Toast.makeText(getContext(), "Connection error.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -205,7 +205,7 @@ public class GameFragment extends Fragment {
             topImage.setVisibility(View.GONE);
         }
 
-        scoreText.setText("Score: " + score);
+        scoreText.setText(getString(R.string.score) + score);
     }
 
     private void checkAnswer(String userAnswer) {
@@ -217,13 +217,13 @@ public class GameFragment extends Fragment {
             if (score < MAX_SCORE) {
                 score += 10;
                 score = Math.min(score, MAX_SCORE);
-                feedbackText.setText("Correct! +10 points.");
+                feedbackText.setText(getString(R.string.correct_feedback));
             }
         } else {
-            feedbackText.setText("Incorrect. Try again.");
+            feedbackText.setText(getString(R.string.incorrect_feedback));
         }
 
-        scoreText.setText("Score: " + score);
+        scoreText.setText(getString(R.string.score) + score);
         questionsAnsweredToday++;
     }
 
@@ -232,7 +232,7 @@ public class GameFragment extends Fragment {
             currentQuestionIndex++;
             displayQuestion(questionList.get(currentQuestionIndex));
         } else {
-            Toast.makeText(getContext(), "You have answered all available questions.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.all_questions_answered), Toast.LENGTH_SHORT).show();
         }
     }
 

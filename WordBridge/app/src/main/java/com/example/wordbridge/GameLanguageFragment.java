@@ -7,20 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class GameLanguageFragment extends Fragment {
 
     private Spinner languageSpinner, gameTypeSpinner;
     private Button confirmButton;
+    private Button backButton; // Back button added
 
     private static final String PREF_NAME = "LanguagePreference";
     private static final String SELECTED_LANGUAGE_KEY = "selectedLanguage";
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game_language, container, false);
@@ -29,9 +35,13 @@ public class GameLanguageFragment extends Fragment {
         languageSpinner = view.findViewById(R.id.languageSpinner);
         gameTypeSpinner = view.findViewById(R.id.gameTypeSpinner);
         confirmButton = view.findViewById(R.id.confirmButton);
+        backButton = view.findViewById(R.id.backButton);
+
+        // Set up back button click listener
+        backButton.setOnClickListener(v -> navigateToMainMenu());
 
         // Array of languages
-        String[] languages = {"English", "Netherland", "Spanish"};
+        String[] languages = {"English", "Dutch", "Spanish"};
 
         // Array of game types
         String[] gameTypes = {"Quiz", "Write"};
@@ -52,7 +62,8 @@ public class GameLanguageFragment extends Fragment {
             String selectedGameType = gameTypeSpinner.getSelectedItem().toString();
 
             if (selectedLanguage.isEmpty() || selectedGameType.isEmpty()) {
-                Toast.makeText(getContext(), "Please select both language and game type.", Toast.LENGTH_SHORT).show();
+                String errorMessage = getString(R.string.error_select_language);
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -70,7 +81,7 @@ public class GameLanguageFragment extends Fragment {
             Fragment fragment;
             if (selectedGameType.equals("Quiz")) {
                 fragment = new QuizFragment();
-                fragment.setArguments(bundle);  // Set the language argument for QuizFragment
+                fragment.setArguments(bundle);  // Pass the language argument for QuizFragment
             } else {
                 fragment = new GameFragment();
             }
@@ -82,5 +93,13 @@ public class GameLanguageFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void navigateToMainMenu() {
+        MainMenuFragment MainMenuFragment = new MainMenuFragment();
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_container, MainMenuFragment);
+        transaction.addToBackStack(null); // Enables back navigation
+        transaction.commit();
     }
 }

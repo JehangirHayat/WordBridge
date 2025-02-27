@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:text="Sentence Display"
+        android:text="@string/Display"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:text="Learning Language Sentences"
+        android:text="@string/Learning"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Learning Language Sentence 1"
+                android:text=""
                 android:textSize="18sp"
                 android:textColor="@android:color/black" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Learning Language Sentence 2"
+                android:text=""
                 android:textSize="18sp"
                 android:textColor="@android:color/black" />
 
@@ -108,7 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Learning Language Sentence 3"
+                android:text=""
                 android:textSize="18sp"
                 android:textColor="@android:color/black" />
 
@@ -124,5 +124,17 @@
         <!-- Add more sentences as needed by copying the above block -->
 
     </LinearLayout>
+
+    <!-- Next Button -->
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Next"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

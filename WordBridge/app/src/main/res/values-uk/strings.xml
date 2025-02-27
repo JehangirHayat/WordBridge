@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WordBridge</string>
+    <string name="language_changed">Мова успішно змінена</string>
+    <string name="remember">Пам\'ятай мене</string>
+    <string name="login">логін</string>
+    <string name="Create">Створити акаунт</string>
+    <string name="regi">зареєструватися</string>
+    <string name="close">Закрити</string>
+    <string name="select">Виберіть мову</string>
+    <string name="Pref">перевага</string>
+    <string name="backlog">Назад Вхід</string>
+    <string name="Email">Електронна пошта</string>
+    <string name="Pass">Пароль</string>
+    <string name="invalid">Неправильна адреса електронної пошти або пароль</string>
+    <string name="game">Грати в гру</string>
+    <string name="Sentences">Речення</string>
+    <string name="back">Назад</string>
+    <string name="Exit">Вихід</string>
+    <string name="Display">Показ речення</string>
+    <string name="Learning">Вивчення мовних речень</string>
+    <string name="score">Оцінка:</string>
+    <string name="Question">Питання:</string>
+    <string name="Next">Далі</string>
+    <string name="SelectLearning">Виберіть мову вивчення</string>
+    <string name="SelectPurpose">Виберіть призначення для речень</string>
+    <string name="Confirm">Підтвердити</string>
+    <string name="SelectLanguage">Виберіть мову для гри</string>
+    <string name="SelectGame">Виберіть тип гри</string>
+    <string name="QuizGame">Гра-вікторина</string>
+    <string name="Type">Введіть свою відповідь тут</string>
+    <string name="error_select_language">Виберіть мову та тип гри.</string>
+    <string name="language_not_selected">Мову не вибрано.</string>
+    <string name="exit_confirmation_message">Ви впевнені, що бажаєте вийти?</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="max_questions_per_day">Ви можете відповісти лише на одне запитання на день.</string>
+    <string name="incorrect_feedback">Невірно. Повторіть спробу.</string>
+    <string name="correct_feedback">Правильно! +10 балів.</string>
+    <string name="all_questions_answered">Ви відповіли на всі доступні запитання.</string>
+    <string name="no_questions_available">Немає запитань.</string>
+    <string name="failed_to_load_questions">Не вдалося завантажити запитання.</string>
+    <string name="connection_error">Помилка підключення.</string>
+    <string name="invalid_language">Вибрано недійсну мову.</string>
+
+    <string name="failed_to_load_sentences">Не вдалося завантажити речення. Перевірте підключення та повторіть спробу.</string>
+    <string name="no_sentences_available">Немає речень, доступних для цієї мови.</string>
+    <string name="error_select_purpose">Будь ласка, виберіть мету</string>
+    <string name="purpose_not_selected">Будь ласка, виберіть ціль у меню.</string>
+    <string name="audio_play_error">Помилка відтворення аудіо. Спробуйте пізніше.</string>
+    <string name="invalid_purpose">Вибрана мета недійсна. Спробуйте ще раз.</string>
+</resources>

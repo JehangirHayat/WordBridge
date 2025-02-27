@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class LoginFragment extends Fragment {
         rememberMeCheckBox = rootView.findViewById(R.id.rememberMe);
         Button loginButton = rootView.findViewById(R.id.loginButton);
         TextView createAccountTextView = rootView.findViewById(R.id.createAccountTextView);
+        ImageButton settingsButton = rootView.findViewById(R.id.settingsButton); // Find settings button
 
         // Load saved email and password if "Remember me" was checked previously
         loadUserData();
@@ -46,6 +48,9 @@ public class LoginFragment extends Fragment {
 
         // Handle create account text view click to open the registration dialog
         createAccountTextView.setOnClickListener(v -> openRegisterDialog());
+
+        // Handle settings button click to navigate to SettingsFragment
+        settingsButton.setOnClickListener(v -> navigateToSettings());
 
         return rootView;
     }
@@ -135,6 +140,14 @@ public class LoginFragment extends Fragment {
         MainMenuFragment mainMenuFragment = new MainMenuFragment();
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_fragment_container, mainMenuFragment); // Ensure this ID matches activity_main.xml
+        transaction.addToBackStack(null); // Allows back navigation
+        transaction.commit();
+    }
+
+    private void navigateToSettings() {
+        SettingsFragment settingsFragment = new SettingsFragment();
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_container, settingsFragment);
         transaction.addToBackStack(null); // Allows back navigation
         transaction.commit();
     }

@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Language to Play"
+        android:text="@string/SelectLanguage"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:layout_marginTop="10dp" />
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Game Type"
+        android:text="@string/SelectGame"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:layout_marginTop="20dp" />
@@ -52,7 +52,15 @@
         android:id="@+id/confirmButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm"
+        android:text="@string/Confirm"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
         android:backgroundTint="@android:color/holo_orange_light"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp" />
