@@ -50,5 +50,10 @@
     <string name="purpose_not_selected">Seleccione un propósito del menú.</string>
     <string name="invalid_purpose">El propósito seleccionado no es válido. Inténtalo de nuevo.</string>
     <string name="no_more_sentences">No hay más oraciones disponibles</string>
+    <string name="Close">Cerrar</string>
+    <string name="Register">Registrar</string>
+    <string name="Passwrod">Contraseña</string>
+    <string name="Lastname">Apellido</string>
+    <string name="Firstname">Nombre</string>
 
 </resources>

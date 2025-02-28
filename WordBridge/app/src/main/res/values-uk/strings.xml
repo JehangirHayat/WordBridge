@@ -50,4 +50,9 @@
     <string name="audio_play_error">Помилка відтворення аудіо. Спробуйте пізніше.</string>
     <string name="invalid_purpose">Вибрана мета недійсна. Спробуйте ще раз.</string>
     <string name="no_more_sentences">Більше немає доступних речень</string>
+    <string name="Close">Закрити</string>
+    <string name="Register">зареєструватися</string>
+    <string name="Passwrod">Пароль</string>
+    <string name="Lastname">Прізвище</string>
+    <string name="Firstname">Ім\'я</string>
 </resources>

@@ -50,4 +50,9 @@
     <string name="purpose_not_selected">Please select a purpose from the menu.</string>
     <string name="invalid_purpose">The selected purpose is invalid. Please try again.</string>
     <string name="no_more_sentences">No more sentences available</string>
+    <string name="Close">Close</string>
+    <string name="Register">Register</string>
+    <string name="Passwrod">Password</string>
+    <string name="Lastname">Last Name</string>
+    <string name="Firstname">First Name</string>
 </resources>

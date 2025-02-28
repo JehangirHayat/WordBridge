@@ -49,4 +49,9 @@
     <string name="purpose_not_selected">يرجى تحديد غرض من القائمة.</string>
     <string name="invalid_purpose">الغرض المحدد غير صالح. يرجى المحاولة مرة أخرى.</string>
     <string name="no_more_sentences">لا توجد جمل أخرى متاحة</string>
+    <string name="Close">يغلق</string>
+    <string name="Register">يسجل</string>
+    <string name="Passwrod">كلمة المرور</string>
+    <string name="Lastname">اسم العائلة</string>
+    <string name="Firstname">الاسم الأول</string>
 </resources>

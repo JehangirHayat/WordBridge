@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:hint="First Name"
+            android:hint="@string/Firstname"
             android:background="@drawable/rounded_border"
             android:padding="5dp"
             android:textSize="12sp"
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:hint="Last Name"
+            android:hint="@string/Lastname"
             android:background="@drawable/rounded_border"
             android:padding="5dp"
             android:textSize="12sp"
@@ -40,7 +40,7 @@
         android:id="@+id/emailInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/Email"
         android:background="@drawable/rounded_border"
         android:padding="10dp"
         android:layout_marginTop="10dp"
@@ -50,7 +50,7 @@
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/Passwrod"
         android:background="@drawable/rounded_border"
         android:padding="10dp"
         android:layout_marginTop="10dp"
@@ -60,7 +60,7 @@
         android:id="@+id/RegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/Register"
         android:backgroundTint="@android:color/holo_orange_light"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp" />
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
     android:backgroundTint="@android:color/holo_orange_light"
-    android:text="Close"
+    android:text="@string/Close"
     android:textColor="@android:color/white" />
 
 </LinearLayout>
